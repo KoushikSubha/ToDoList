@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+background-color: #e0f2f1;
+color: #333;
+}
+.container {
+max-width: 600px;
+margin: 50px auto;
+padding: 20px;
+background-color: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+}
+h1 {
+text-align: center;
+color: #4CAF50;
+}
+.controls {
+margin-top: 20px;
+display: flex;
+justify-content: space-between;
+}
+input[type="text"] {
+padding: 10px;
+flex-grow: 1;
+border: 1px solid #ddd;
+border-radius: 4px;
+}
+button {
+padding: 10px 20px;
+cursor: pointer;
+background-color: #4CAF50;
+color: #fff;
+border: none;
+border-radius: 4px;
+}
+.task {
+background-color: #dff0d8;
+margin-bottom: 10px;
+padding: 15px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border: 1px solid #4CAF50;
+border-radius: 4px;
+}
+.task button {
+background-color: #d9534f;
+color: #fff;
+border: none;
+padding: 8px 12px;
+cursor: pointer;
+border-radius: 4px;
+}
+</style>
+<title>To-Do List</title>
+</head>
+<body>
+<div class="container">
+<h1>To-Do List</h1>
+<div id="tasks-container">
+<!-- Tasks will be added dynamically here -->
+</div>
+<div class="controls">
+<input type="text" id="taskInput" placeholder="Add a new task">
+<button id="addTask">Add Task</button>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+const tasksContainer = document.getElementById('tasks-container');
+const taskInput = document.getElementById('taskInput');
+const addTaskButton = document.getElementById('addTask');
+addTaskButton.addEventListener('click', () => {
+const taskText = taskInput.value.trim();
+if (taskText !== '') {
+addTask(taskText);
+taskInput.value = '';
+}
+});
+function addTask(text) {
+const taskDiv = document.createElement('div');
+taskDiv.classList.add('task');
+const taskText = document.createElement('span');
+taskText.textContent = text;
+const deleteButton = document.createElement('button');
+deleteButton.textContent = 'Delete';
+deleteButton.addEventListener('click', () => {
+taskDiv.remove();
+});
+taskDiv.appendChild(taskText);
+taskDiv.appendChild(deleteButton);
+tasksContainer.appendChild(taskDiv);
+}
+});
+</script>
+</body>
+</html>
